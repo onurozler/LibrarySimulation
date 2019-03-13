@@ -1,6 +1,7 @@
 import simpy
 import yaml
 import random
+import datetime
 from Student import Student
 from Book import Book
 from Time import Time
@@ -16,8 +17,10 @@ studentInfo = settingsConfig["student"]
 studentList = []
 bookList = []
 def setupStudents(env):
-	for i in range(studentInfo["studentSize"]):
-		randomName = studentInfo["studentName"][random.randint(0, 9)] + ' ' +  studentInfo["studentSurname"][random.randint(0, 9)]
+	stuLen = len(studentInfo["studentName"])
+	surNamelen = len(studentInfo["studentSurname"])
+	for i in range(stuLen*2):
+		randomName = studentInfo["studentName"][random.randint(0, stuLen-1)] + ' ' +  studentInfo["studentSurname"][random.randint(0, surNamelen-1)]
 		student = Student(env,randomName,libraryInfo["membershipOptions"][random.randint(0, 1)])
 		studentList.append(student)
 
@@ -25,7 +28,7 @@ def setupLibrary(env):
 	print('Welcome to %s. Library is open till %s.' % (libraryInfo["name"], libraryInfo["closeHour"]))
 	
 	#Adding books to library's booklist
-	for i in range(bookInfo["bookSize"]):
+	for i in range(len(bookInfo["titles"])):
 		book = Book(env,bookInfo["titles"][i],i+1)
 		bookList.append(book)
 		
@@ -41,10 +44,12 @@ def main():
 	setupLibrary(env)
 	setupStudents(env)
 	
-	print(studentList[0].getMembership())
+	now = datetime.datetime.now()
+	t = Time(now.year,now.month,now.day,now.hour,now.minute,now.second)
+	
 	
 	for student in studentList:
-		env.process(student.requestBook(env,bookList[random.randint(0, 9)],0))
+		env.process(student.requestBook(env,bookList[random.randint(0, len(bookList)-1)],0,t))
 	
 	env.run()
 

@@ -20,12 +20,10 @@ library:
   - Calculus
   - Mathematics
   - Simulation
-  bookSize: 10
  
 
 # Student Settings
 student:
-  studentSize: 20
   studentName: 
   - James
   - John
