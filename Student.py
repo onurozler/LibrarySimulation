@@ -26,12 +26,13 @@ class Student():
 		
 	
 	# Functions
-	def requestBook(env,resource,wait):
+	def requestBook(self,env,resource,wait):
 		yield env.timeout(wait)
 		with resource.request(priority=self.membership) as req:
-			print('%s requesting at %s with priority=%s' % (self.name, env.now, self.membership))
+			print('%s requesting book at %s with Membership = %s' % (self.name, env.now, self.membership))
 			yield req
-			print('%s got resource at %s' % (self.name, env.now))
+			print('%s has borrowed book at %s' % (self.name, env.now))
 			yield env.timeout(3)
+			print('%s gave book at %s' % (self.name, env.now))
 	
 	

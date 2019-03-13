@@ -3,12 +3,12 @@ import simpy
 class Book():
 
 	# constructor
-	def __init__(self,env,title,subject,amount,resource):
+	def __init__(self,env,title,subject,amount):
 		self.env = env
 		self.title = title
 		self.subject = subject
 		self.amount = amount
-		resource = simpy.PriorityResource(env, capacity=amount)
+		self.resource = simpy.PriorityResource(env, capacity=amount)
 		
 
     # getter & setter
