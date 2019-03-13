@@ -3,19 +3,16 @@ import simpy
 class Book():
 
 	# constructor
-	def __init__(self,env,title,subject,amount):
+	def __init__(self,env,title,amount):
 		self.env = env
 		self.title = title
-		self.subject = subject
 		self.amount = amount
 		self.resource = simpy.PriorityResource(env, capacity=amount)
 		
 
     # getter & setter
 	def getTitle(self):
-		return self.title
-	def getSubject(self):
-		return self.subject		
+		return self.title	
 	def getAmount(self):
 		return self.amount
 	def getResource(self):
@@ -24,8 +21,6 @@ class Book():
 
 	def setTitle(self,title):
 		self.title = title
-	def setSubject(self,subject):
-		self.subject = subject	
 	def setAmount(self,amount):
 		self.amount = amount
 	def setResource(self,resource):

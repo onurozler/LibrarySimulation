@@ -1,0 +1,52 @@
+# Settings
+
+# Library Settings
+library:
+ name : 'XXX University Library'
+ openHour : '09.00'
+ closeHour : '17.00'
+ membershipOptions:
+   - -1
+   - 0
+ book:
+  titles: 
+  - Deep Learning
+  - Data Science
+  - Statistics
+  - Virutal Reality
+  - Neural Networks
+  - Unity 3D
+  - Linear Algebra
+  - Calculus
+  - Mathematics
+  - Simulation
+  bookSize: 10
+ 
+
+# Student Settings
+student:
+  studentSize: 20
+  studentName: 
+  - James
+  - John
+  - Marta
+  - Benjamin
+  - Onur
+  - Deniz
+  - Jaime
+  - Martin
+  - Robin
+  - Alex
+  studentSurname:
+  - Pereira
+  - Ozler
+  - Perez
+  - Persie
+  - Kross
+  - Souza
+  - Hetfield
+  - Mustaine
+  - Skrtel
+  - Rangel
+
+

@@ -1,35 +1,35 @@
 import simpy
 
 class Student():
-
 	# constructor
-	def __init__(self,env,name,department,membership):
+	def __init__(self,env,name,membership):
 		self.env = env
 		self.name = name
-		self.department = department
 		self.membership = membership
+		if(membership == -1):
+			self.membershipName = 'Gold Membership'
+		else:
+			self.membershipName = 'Normal Membership'
 
     # getter & setter
 	def getName(self):
-		return self.name
-	def getDepartment(self):
-		return self.department		
+		return self.name	
 	def getMembership(self):
 		return self.membership
 
 	def setName(self,name):
 		self.name = name
-	def setDepartment(self,department):
-		self.department = department	
 	def setMembership(self,membership):
 		self.membership = membership
 		
 	
 	# Functions
-	def requestBook(self,env,resource,wait):
+	def requestBook(self,env,book,wait):
 		yield env.timeout(wait)
+		resource = book.getResource()
+		
 		with resource.request(priority=self.membership) as req:
-			print('%s requesting book at %s with Membership = %s' % (self.name, env.now, self.membership))
+			print('%s requesting %s Book at %s with %s' % (self.name, book.getTitle(),env.now, self.membershipName))
 			yield req
 			print('%s has borrowed book at %s' % (self.name, env.now))
 			yield env.timeout(3)
