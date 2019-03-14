@@ -57,7 +57,7 @@ def main():
 	t = Time(now.year,now.month,now.day,now.hour,now.minute,now.second)
 	
 	# Students come and request Books randomly. They can get books earlier depending on priority of membership.
-	studentComeTime = random.randint(0,3)
+	studentComeTime = 0
 	for student in studentList:
 		env.process(student.requestBook(env,bookList[random.randint(0, len(bookList)-1)],studentComeTime,t))
 		studentComeTime += random.randint(1,3)
