@@ -1,4 +1,5 @@
 import simpy
+import random
 
 class Student():
 	# constructor
@@ -25,14 +26,19 @@ class Student():
 	
 	# Functions
 	def requestBook(self,env,book,wait,time):
+		#Student coming time
 		yield env.timeout(wait)
 		resource = book.getResource()
 		
+		#Request book with membership ant wait to get book.
 		with resource.request(priority=self.__membership) as req:
-			print('%s requesting %s Book at %s with %s' % (self.__name, book.getTitle(),env.now, self.__membershipName))
+			#Request book
+			print('%s requesting %s Book at %s with %s' % (self.__name, book.getTitle(),time.changeToClock(env.now), self.__membershipName))
 			yield req
-			print('%s has borrowed book at %s' % (self.__name, time.changeToClock(env.now)))
-			yield env.timeout(3)
-			print('%s gave book at %s' % (self.__name, env.now))
+			#Borrow Book and read it in random time.
+			print('%s has borrowed %s Book at %s' % (self.__name, book.getTitle(),time.changeToClock(env.now)))
+			yield env.timeout(random.randint(5,10))
+			#After finishing reading, give book to libray.
+			print('%s gave book at %s' % (self.__name, time.changeToClock(env.now)))
 	
 	

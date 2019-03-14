@@ -21,11 +21,7 @@ class Time():
 		minute = self.__minute
 		second = self.__second
 		
-		hour += int((minute + envTime) / 60)
-		minute = (envTime + minute) % 60
-		second +=int((envTime + minute)%60)
-		day += int(hour / 24)
-		hour = hour % 24
+		day +=int((envTime + minute)%60)
 
 		if month == 4 or month == 6 or month == 9 or month == 11:
 			month += int(day / 31)
@@ -44,6 +40,6 @@ class Time():
 		year += int(month / 13)
 		month = ((month - 1) % 12) + 1
 
-		newTime = "%s/%s/%s %s:%s:%s"%(
-		year, str(month).rjust(2, "0"), str(day).rjust(2, "0"), str(hour).rjust(2, "0"), str(minute).rjust(2, "0"),str(second).rjust(2,"0"))
+		newTime = "%s/%s/%s"%(
+		year, str(month).rjust(2, "0"), str(day).rjust(2, "0"))
 		return newTime
