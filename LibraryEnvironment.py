@@ -63,6 +63,8 @@ def main():
 		studentComeTime += random.randint(1,3)
 	
 	env.run()
+	
+	print('\n=========================== Library will be closed for a while, Thanks for your patience! ===========================')
 
 if __name__ == "__main__":
     main()

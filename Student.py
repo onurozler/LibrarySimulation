@@ -33,12 +33,12 @@ class Student():
 		#Request book with membership ant wait to get book.
 		with resource.request(priority=self.__membership) as req:
 			#Request book
-			print('%s requesting %s Book at %s with %s' % (self.__name, book.getTitle(),time.changeToClock(env.now), self.__membershipName))
+			print('%s has requested %s Book at %s with %s' % (self.__name, book.getTitle(),time.changeToClock(env.now), self.__membershipName))
 			yield req
 			#Borrow Book and read it in random time.
 			print('%s has borrowed %s Book at %s' % (self.__name, book.getTitle(),time.changeToClock(env.now)))
 			yield env.timeout(random.randint(5,10))
 			#After finishing reading, give book to libray.
-			print('%s gave book at %s' % (self.__name, time.changeToClock(env.now)))
+			print('%s gave book back at %s to the library' % (self.__name, time.changeToClock(env.now)))
 	
 	
