@@ -7,10 +7,8 @@ class Student():
 		self.__env = env
 		self.__name = name
 		self.__membership = membership
-		if(self.__membership == -1):
-			self.__membershipName = 'Gold Membership'
-		else:
-			self.__membershipName = 'Normal Membership'
+		self.__membershipName = ('Gold' if membership ==-1 else 'Normal') +' Membership'
+
 
     # getter & setter
 	def getName(self):
